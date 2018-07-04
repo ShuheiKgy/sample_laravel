@@ -20,3 +20,17 @@ Route::get('signup/confirm', 'SignupController@confirm')->name('signup.confirm')
 Route::post('signup/confirm', 'SignupController@postConfirm');
 
 Route::get('signup/thanks', 'SignupController@thanks')->name('signup.thanks');
+
+
+Route::middleware('guest:admin')->group(function () {
+    Route::get('admin/login', 'Admin\LoginController@showLoginForm')->name('admin.login');
+
+    Route::post('admin/login', 'Admin\LoginController@login');
+});
+
+Route::middleware('auth:admin')->group(function (){
+    Route::get('admin/logout', 'Admin\LoginController@logout')->name('admin.logout');
+
+    Route::get('admin', 'Admin\IndexController@index')->name('admin.top');
+});
+
