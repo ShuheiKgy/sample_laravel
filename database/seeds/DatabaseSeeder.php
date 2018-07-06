@@ -26,5 +26,7 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('testtesttest'),
             ]
         );
+        
+        factory(App\Message::class, 20)->create();
     }
 }

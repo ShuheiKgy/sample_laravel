@@ -32,5 +32,15 @@ Route::middleware('auth:admin')->group(function (){
     Route::get('admin/logout', 'Admin\LoginController@logout')->name('admin.logout');
 
     Route::get('admin', 'Admin\IndexController@index')->name('admin.top');
+    
+    Route::get('admin/message', 'Admin\MessageController@index')->name('admin.message.index');
+    
+    Route::get('admin/message/create', 'Admin\MessageController@create')->name('admin.message.create');
+    
+    Route::post('admin/message/create', 'Admin\MessageController@store');
+    
+    Route::get('admin/message/edit/{message}', 'Admin\MessageController@edit')->name('admin.message.edit');
+    
+    Route::post('admin/message/edit/{message}', 'Admin\MessageController@update');
 });
 
