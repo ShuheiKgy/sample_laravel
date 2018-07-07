@@ -36,4 +36,14 @@ class User extends Authenticatable
     {
         return static::latest()->pluck('name', 'id');
     }
+    
+    protected static function boot()
+    {
+        parent::boot();
+        
+        static::deleting(function($user) {
+            $user->messages()->delete();
+        });
+    }
+    
 }

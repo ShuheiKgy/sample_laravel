@@ -28,7 +28,7 @@ Route::middleware('guest:admin')->group(function () {
     Route::post('admin/login', 'Admin\LoginController@login');
 });
 
-Route::middleware('auth:admin')->group(function (){
+Route::middleware('auth:admin')->group(function () {
     Route::get('admin/logout', 'Admin\LoginController@logout')->name('admin.logout');
 
     Route::get('admin', 'Admin\IndexController@index')->name('admin.top');
@@ -42,5 +42,28 @@ Route::middleware('auth:admin')->group(function (){
     Route::get('admin/message/edit/{message}', 'Admin\MessageController@edit')->name('admin.message.edit');
     
     Route::post('admin/message/edit/{message}', 'Admin\MessageController@update');
+    
+    Route::get('admin/user', 'Admin\UserController@index')->name('admin.user.index');
+    
+    Route::delete('admin/user/destroy/{user}', 'Admin\UserController@destroy')->name('admin.user.destroy');
 });
 
+Route::middleware('guest:user')->group(function () {
+    Route::get('user/login', 'User\LoginController@showLoginForm')->name('user.login');
+    
+    Route::post('user/login', 'User\LoginController@login');
+});
+
+Route::middleware('auth:user')->group(function () {
+    Route::get('user', 'User\IndexController')->name('user.top');
+    
+    Route::get('user/logout', 'User\LoginController@logout')->name('user.logout');
+    
+    Route::get('user/profile/edit', 'User\ProfileController@edit')->name('user.profile.edit');
+    
+    Route::post('user/profile/edit', 'User\ProfileController@update');
+    
+    Route::get('user/message', 'User\MessageController@index')->name('user.message.index');
+    
+    Route::get('user/message/show/{message}', 'User\MessageController@show')->name('user.message.show');
+});
