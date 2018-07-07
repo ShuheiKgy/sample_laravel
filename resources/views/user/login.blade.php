@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ユーザーログイン</title>
+        <link rel="stylesheet" href="/css/style.css" type="text/css" />
+    </head>
+    <body>
+        <h2>ユーザーログイン</h2>
+        
+        @if ($errors->any())
+            <ul class="error-box">
+                @foreach($errors->all() as $_error)
+                    <li>{{ $_error }}</li>
+                @endforeach
+            </ul>
+        @endif
+        
+        <form method="post">
+            {{ csrf_field() }}
+            
+            <ul>
+                <li>
+                    <label>メールアドレス</label>
+                    <input type="text" name="email" value="{{ old('email') }}"/>
+                </li>
+                <li>
+                    <label>パスワード</label>
+                    <input type="password" name="password"/>
+                </li>
+            </ul>
+            
+            <input type="submit" name="ログイン"/>
+        </form>
+    </body>
+</html>

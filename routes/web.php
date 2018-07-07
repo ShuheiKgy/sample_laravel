@@ -55,7 +55,7 @@ Route::middleware('guest:user')->group(function () {
 });
 
 Route::middleware('auth:user')->group(function () {
-    Route::get('user', 'User\IndexController')->name('user.top');
+    Route::get('user', 'User\IndexController@index')->name('user.top');
     
     Route::get('user/logout', 'User\LoginController@logout')->name('user.logout');
     
