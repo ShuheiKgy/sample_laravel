@@ -19,6 +19,12 @@ class MessageController extends Controller
     
     public function show(Message $message)
     {
+        
+        $this->authorize('view', $message);
+        // if (auth()->id() !== $message->user_id) {
+        //     abort(403);
+        // }
+        
         return view('user.message.show')->with(['message' => $message]);
     }
     
